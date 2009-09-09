@@ -23,14 +23,9 @@
       <version>1.4</version>
     </dependency>
     <dependency>
-      <groupId>com.google.code.mindi-f</groupId>
-      <artifactId>mindi-f</artifactId>
-      <version>0.1.2</version>
-    </dependency>
-    <dependency>
-      <groupId>cheesymock</groupId>
+      <groupId>com.google.code.cheesymock</groupId>
       <artifactId>cheesymock</artifactId>
-      <version>1.2-SNAPSHOT</version>
+      <version>1.1.5-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>com.google.code.mindi-f</groupId>
@@ -40,7 +35,7 @@
   </dependencies>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <compileSource>1.6</compileSource>
+    <compileSource>1.5</compileSource>
   </properties>
   <build>
     <defaultGoal>install</defaultGoal>
