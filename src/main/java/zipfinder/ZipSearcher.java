@@ -1,13 +1,8 @@
 package zipfinder;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Enumeration;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipException;
-import java.util.zip.ZipFile;
+import java.io.*;
+import java.util.*;
+import java.util.zip.*;
 
 import zipfinder.logger.StatusLogger;
 
@@ -24,7 +19,7 @@ public class ZipSearcher {
 	private StatusLogger statusLogger;
 
 	public ZipSearcher(final String str) {
-		this.str = str;
+		this.str = str.trim();
 	}
 
 	public String[] findEntries(final File zfile) {
