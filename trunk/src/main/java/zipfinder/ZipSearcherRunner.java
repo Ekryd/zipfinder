@@ -17,6 +17,15 @@ public class ZipSearcherRunner implements Runnable {
 		this.stringToFind = stringToFind;
 	}
 
+	private void printFileInfo(final File zipFile, final String[] names) {
+		statusLogger.logFilesFound(zipFile.getAbsolutePath());
+		for (String name : names) {
+			StringBuffer stringBuffer = new StringBuffer();
+			stringBuffer.append("  ").append(name);
+			statusLogger.logFilesFound(stringBuffer.toString());
+		}
+	}
+
 	public void run() {
 		while (!(foundFilesQueue.isDone() && foundFilesQueue.isEmpty())) {
 			ZipSearcher searcher = new ZipSearcher(stringToFind);
@@ -29,7 +38,7 @@ public class ZipSearcherRunner implements Runnable {
 			}
 			if (zipFile != null) {
 				nrOfFiles++;
-				String[] names = searcher.findEntries(zipFile);
+				String[] names = searcher.findEntries(new ZipFileEntries(zipFile));
 				if (names.length != 0) {
 					printFileInfo(zipFile, names);
 				}
@@ -40,14 +49,5 @@ public class ZipSearcherRunner implements Runnable {
 
 	public void setStatusLogger(final StatusLogger statusLogger) {
 		this.statusLogger = statusLogger;
-	}
-
-	private void printFileInfo(final File zipFile, final String[] names) {
-		statusLogger.logFilesFound(zipFile.getAbsolutePath());
-		for (int i = 0; i < names.length; i++) {
-			StringBuffer stringBuffer = new StringBuffer();
-			stringBuffer.append("  ").append(names[i]);
-			statusLogger.logFilesFound(stringBuffer.toString());
-		}
 	}
 }

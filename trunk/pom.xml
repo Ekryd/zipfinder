@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.google.code.zipfinder</groupId>
   <artifactId>zipfinder</artifactId>
-  <version>1.0.0</version>
+  <version>1.1.0</version>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -77,7 +77,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>versions-maven-plugin</artifactId>
-        <version>1.0</version>
+        <version>1.1</version>
         <executions>
           <execution>
             <id>show-plugin-versions</id>
@@ -92,7 +92,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
-        <version>2.1</version>
+        <version>2.1.1</version>
         <executions>
           <execution>
             <id>attach-sources</id>
@@ -106,7 +106,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>2.6</version>
+        <version>2.6.1</version>
         <configuration>
           <minmemory>128m</minmemory>
           <maxmemory>512</maxmemory>
@@ -165,7 +165,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
-        <version>2.3</version>
+        <version>2.4.1</version>
         <executions>
           <execution>
             <id>copy-resources</id>
