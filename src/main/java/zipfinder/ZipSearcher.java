@@ -1,7 +1,8 @@
 package zipfinder;
 
-import java.io.*;
+import java.io.IOException;
 import java.util.*;
+import java.util.regex.Pattern;
 import java.util.zip.*;
 
 import zipfinder.logger.StatusLogger;
@@ -15,34 +16,41 @@ import zipfinder.logger.StatusLogger;
  * @version 1.0
  */
 public class ZipSearcher {
-	private final String str;
+	private final Pattern pattern;
 	private StatusLogger statusLogger;
 
 	public ZipSearcher(final String str) {
-		this.str = str.trim();
+		String patternString = str.trim().replaceAll("\\W", ".");
+		patternString = "\\S*" + patternString + "\\S*";
+		pattern = Pattern.compile(patternString);
 	}
 
-	public String[] findEntries(final File zfile) {
-		ZipFile zipFile;
+	public String[] findEntries(final ZipFileEntries entries) {
+		Enumeration<? extends ZipEntry> zipEntries;
 		try {
-			zipFile = new ZipFile(zfile);
+			zipEntries = entries.getEntries();
 		} catch (ZipException e) {
-			statusLogger.logError("ZipFinder Error, ZipFile: " + zfile.getAbsoluteFile() + " " + e.getMessage());
+			statusLogger.logError("ZipFinder Error, ZipFile: " + entries.getFile().getAbsoluteFile() + " "
+					+ e.getMessage());
 			return new String[0];
 		} catch (IOException e) {
-			statusLogger.logError("ZipFinder Error, ZipFile: " + zfile.getAbsoluteFile() + " " + e.getMessage());
+			statusLogger.logError("ZipFinder Error, ZipFile: " + entries.getFile().getAbsoluteFile() + " "
+					+ e.getMessage());
 			return new String[0];
 		}
-		Enumeration<? extends ZipEntry> entries = zipFile.entries();
 		Collection<String> fileNames = new ArrayList<String>();
-		while (entries.hasMoreElements()) {
-			ZipEntry entry = entries.nextElement();
+		while (zipEntries.hasMoreElements()) {
+			ZipEntry entry = zipEntries.nextElement();
 			String fileName = entry.getName();
-			if (fileName.indexOf(str) != -1) {
+			if (isFileMatch(fileName)) {
 				fileNames.add(fileName);
 			}
 		}
 		return fileNames.toArray(new String[fileNames.size()]);
+	}
+
+	private boolean isFileMatch(final String fileName) {
+		return pattern.matcher(fileName).matches();
 	}
 
 	void setStatusLogger(final StatusLogger statusLogger) {
