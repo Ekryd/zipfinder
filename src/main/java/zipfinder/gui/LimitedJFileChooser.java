@@ -12,6 +12,7 @@ public class LimitedJFileChooser extends JFileChooser {
 
 	public void customize() {
 		setControlButtonsAreShown(false);
+		setFileHidingEnabled(false);
 		removeExcessButtons(this, getComponents());
 		removeExcessFields(this, getComponents());
 	}
