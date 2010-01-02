@@ -149,7 +149,8 @@ public class SwingGui {
 				GridBagConstraints.BOTH, insets, 0, 0));
 		directoryTree.customize();
 		directoryTree.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-		directoryTree.setSelectedFile(new File(directoryComboBox.getSelectedItem().toString()));
+		if (directoryComboBox.getSelectedItem() != null)
+			directoryTree.setSelectedFile(new File(directoryComboBox.getSelectedItem().toString()));
 		// lowerPanel
 		lowerPanel = new JPanel();
 		GridBagLayout lowerPanelLayout = new GridBagLayout();
