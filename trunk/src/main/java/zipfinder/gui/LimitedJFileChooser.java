@@ -14,7 +14,6 @@ public class LimitedJFileChooser extends JFileChooser {
 		setControlButtonsAreShown(false);
 		removeExcessButtons(this, getComponents());
 		removeExcessFields(this, getComponents());
-		// removeExcessLabels(this, getComponents());
 	}
 
 	private void removeExcessButtons(final Container parent, final Component[] components) {
