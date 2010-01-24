@@ -54,6 +54,10 @@ public class FileFinder implements Runnable {
 			return;
 		}
 		File[] zipFiles = directory.listFiles(ZIP_FILE_FILTER);
+		if (zipFiles == null) {
+			statusLogger.logError("Kunde inte söka i folder " + directory);
+			return;
+		}
 		for (File file : zipFiles) {
 			if (stop) {
 				return;
