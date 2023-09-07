@@ -6,7 +6,7 @@ import java.util.zip.*;
 
 /**
  * Extracts zip file entries from file
- * 
+ *
  * @author bjorn
  *
  */
@@ -24,9 +24,10 @@ public class ZipFileEntries {
 		this.file = file;
 	}
 
-	public Enumeration<? extends ZipEntry> getEntries() throws ZipException, IOException {
+	public Enumeration<ZipEntry> getEntries() throws ZipException, IOException {
 		ZipFile zipFile = new ZipFile(file);
-		return zipFile.entries();
+    //noinspection unchecked
+    return (Enumeration<ZipEntry>) zipFile.entries();
 	}
 
 	public File getFile() {
